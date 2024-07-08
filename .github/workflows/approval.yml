@@ -14,10 +14,10 @@ jobs:
     - name: Request approval
       uses: peter-evans/slash-command-dispatch@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.APPROVAL_TOKEN }}
         issue-type: pull-request
         command: "/approve"
         permission: write
         dispatch-type: workflow
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APPROVAL_TOKEN: ${{ secrets.APPROVAL_TOKEN }}
