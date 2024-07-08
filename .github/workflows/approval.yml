@@ -1,0 +1,23 @@
+name: Approval Workflow
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+      - completed
+
+jobs:
+  approval:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Request approval
+      uses: peter-evans/slash-command-dispatch@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        issue-type: pull-request
+        command: "/approve"
+        permission: write
+        dispatch-type: workflow
+        reactions: 
+          - eyes
