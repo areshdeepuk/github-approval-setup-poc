@@ -17,6 +17,11 @@ jobs:
 
     - name: Deployment step
       run: echo "Deploying to sit..."
-    
+  
+  Promote_SIT:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: sit
+    steps:
     - name: Promote to Staging
       run: echo "Promoting to STAGING..."

@@ -18,5 +18,14 @@ jobs:
     - name: Deployment step
       run: echo "Deploying to qa..."
     
+<<<<<<< HEAD
+  Promote_SIT:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: qa
+    steps:
+    - name: Promote to SIT
+=======
     - name: Promote to QA
+>>>>>>> af2b52f1768d7a320a63b070e9aec7575388ae8c
       run: echo "Promoting to SIT..."
