@@ -19,5 +19,5 @@ jobs:
         command: "/approve"
         permission: write
         dispatch-type: workflow
-        reactions: 
-          - eyes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
