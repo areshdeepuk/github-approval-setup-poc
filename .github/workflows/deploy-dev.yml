@@ -10,10 +10,10 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    environment: DEV
+    environment: dev
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Deployment step
-      run: echo "Deploying to DEV..."
+      run: echo "Deploying to dev..."
