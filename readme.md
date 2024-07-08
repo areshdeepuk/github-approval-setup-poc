@@ -1,1 +1,1 @@
-github-approval-setup-poc1
+github-approval-setup-poc
