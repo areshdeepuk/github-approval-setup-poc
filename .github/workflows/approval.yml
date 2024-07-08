@@ -11,13 +11,13 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Request approval
-      uses: peter-evans/slash-command-dispatch@v2
+    - name: Create approval issue comment
+      uses: peter-evans/create-or-update-comment@v1
       with:
         token: ${{ secrets.APPROVAL_TOKEN }}
-        issue-type: pull-request
-        command: "/approve"
-        permission: write
-        dispatch-type: workflow
-      env:
-        APPROVAL_TOKEN: ${{ secrets.APPROVAL_TOKEN }}
+        issue-number: ${{ github.event.workflow_run.head_branch }}
+        body: |
+          Please review and approve this workflow run:
+          - Workflow: ${{ github.event.workflow_run.name }}
+          - Conclusion: ${{ github.event.workflow_run.conclusion }}
+          - URL: ${{ github.event.workflow_run.html_url }}
