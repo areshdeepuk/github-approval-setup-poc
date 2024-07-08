@@ -1,8 +1,8 @@
-name: Deploy to DEV
+name: Deploy to QA
 
 on:
   workflow_run:
-    workflows: ["CI Pipeline"]
+    workflows: ["Deploy to DEV"]
     types:
       - completed
 
@@ -10,13 +10,13 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    environment: dev
+    environment: qa
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Deployment step
-      run: echo "Deploying to dev..."
+      run: echo "Deploying to qa..."
     
     - name: Promote to QA
-      run: echo "Promoting to QA..."
+      run: echo "Promoting to SIT..."
