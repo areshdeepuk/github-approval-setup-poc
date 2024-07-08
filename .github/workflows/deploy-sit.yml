@@ -1,4 +1,4 @@
-name: Deploy to DEV
+name: Deploy to SIT
 
 on:
   workflow_run:
@@ -10,13 +10,13 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    environment: dev
+    environment: sit
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Deployment step
-      run: echo "Deploying to dev..."
+      run: echo "Deploying to sit..."
     
-    - name: Promote to QA
-      run: echo "Promoting to QA..."
+    - name: Promote to Staging
+      run: echo "Promoting to STAGING..."
