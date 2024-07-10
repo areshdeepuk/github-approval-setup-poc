@@ -7,7 +7,7 @@ on:
     
 
 jobs:
-  deploy:
+  Deploy_Dev:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -15,8 +15,10 @@ jobs:
 
     - name: Deployment step
       run: echo "Deploying to dev..."
+    - name: Health check step
+      run: echo "Health check for dev..."
   Promote_QA:
-    needs: deploy
+    needs: Deploy_Dev
     runs-on: ubuntu-latest
     environment: dev
     steps:

@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  deploy:
+  Deploy_QA:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: qa
@@ -17,8 +17,10 @@ jobs:
 
     - name: Deployment step
       run: echo "Deploying to qa..."
+    - name: Health check step
+      run: echo "Health check for QA..."
   Promote_SIT:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: Deploy_QA
     runs-on: ubuntu-latest
     environment: qa
     steps:
