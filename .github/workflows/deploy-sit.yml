@@ -7,19 +7,21 @@ on:
       - completed
 
 jobs:
-  deploy:
+  Deploy_SIT:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    environment: sit
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Deployment step
       run: echo "Deploying to sit..."
+
+    - name: Health check step
+      run: echo "Health check for SIT..."
   
   Promote_SIT:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: Deploy_SIT
     runs-on: ubuntu-latest
     environment: sit
     steps:
