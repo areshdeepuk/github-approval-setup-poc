@@ -1,6 +1,9 @@
 name: Deploy to DEV
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types: [closed]
     branches:
@@ -9,7 +12,6 @@ on:
 
 jobs:
   deploy:
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
