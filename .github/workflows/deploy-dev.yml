@@ -9,10 +9,13 @@ on:
     workflows: ["CI Pipeline"]
     types:
       - completed
+    branches:
+      - main
+    
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} && ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
